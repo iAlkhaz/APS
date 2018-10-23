@@ -1,0 +1,11 @@
+N = 512; n = [0 : N-1];
+x = cos(2*pi * 20.5 * n/N) + 0.001 * cos(2*pi * 50* n/N);
+x = x .* hanning(N)';
+X = fft(x);
+M = (2/N) * abs(X(1 : N/2));
+subplot 221; plot(n, x);
+xlabel('n'); title('x(n) · hanning(n)');
+axis([0 N-1 -1 1]); grid;
+subplot 222; k = [0 : 100]; semilogy(k, M(k+1));
+xlabel('k'); title('Magnitud [X(k)]');
+axis([0 101 0.0001 1]); grid;
